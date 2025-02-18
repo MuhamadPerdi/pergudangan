@@ -24,26 +24,48 @@ class AdminController extends Controller
     }
     public function index()
     {
-        $barang = Barang::with(['suplier', 'gerai'])->get();
+        $barang = Barang::with(['suplier'])->get();
         return view('admin.barang.index', compact('barang'));
     }
+
+
 
     public function create()
     {
         $suplier = Suplier::all();
-        $gerai = Gerai::all();
-        return view('admin.barang.create', compact('suplier', 'gerai'));
+        return view('admin.barang.create', compact('suplier'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'kategori' => 'required',
-            'nama_barang' => 'required',
-            'harga' => 'required|numeric',
-            'stok' => 'required|numeric',
-            'suplier_id' => 'required|exists:suplier,id',
-            'gerai_id' => 'required|exists:gerai,id',
+            'kategori' => 
+                'required', 
+                'string', 
+                'min:3', 
+                'max:50', 
+                'regex:/^[a-zA-Z\s]+$/'
+            ,
+            'nama_barang' => 
+                'required', 
+                'string', 
+                'min:3', 
+                'max:100'
+            ,
+            'harga' => 
+                'required', 
+                'numeric', 
+                'min:1'
+            ,
+            'stok' => 
+                'required', 
+                'integer', 
+                'min:1'
+            ,
+            'suplier_id' => 
+                'required', 
+                'exists:suplier,id'
+            ,
         ]);
 
         Barang::create($request->all());
@@ -54,19 +76,39 @@ class AdminController extends Controller
     public function edit(Barang $barang)
     {
         $suplier = Suplier::all();
-        $gerai = Gerai::all();
-        return view('admin.barang.edit', compact('barang', 'suplier', 'gerai'));
+        return view('admin.barang.edit', compact('barang', 'suplier'));
     }
 
     public function update(Request $request, Barang $barang)
     {
         $request->validate([
-            'kategori' => 'required',
-            'nama_barang' => 'required',
-            'harga' => 'required|numeric',
-            'stok' => 'required|numeric',
-            'suplier_id' => 'required|exists:suplier,id',
-            'gerai_id' => 'required|exists:gerai,id',
+            'kategori' => 
+                'required', 
+                'string', 
+                'min:3', 
+                'max:50', 
+                'regex:/^[a-zA-Z\s]+$/'
+            ,
+            'nama_barang' => 
+                'required', 
+                'string', 
+                'min:3', 
+                'max:100'
+            ,
+            'harga' => 
+                'required', 
+                'numeric', 
+                'min:1'
+            ,
+            'stok' => 
+                'required', 
+                'integer', 
+                'min:1'
+            ,
+            'suplier_id' => 
+                'required', 
+                'exists:suplier,id'
+            ,
         ]);
 
         $barang->update($request->all());
@@ -95,10 +137,29 @@ class AdminController extends Controller
     public function suplierStore(Request $request)
     {
         $request->validate([
-            'nama' => 'required',
-            'alamat' => 'required',
-            'kota' => 'required',
-            'telepon' => 'required',
+            'nama' => [
+                'required', 
+                'string', 
+                'min:3', 
+                'max:100'
+            ],
+            'alamat' => [
+                'required', 
+                'string', 
+                'min:10', 
+                'max:255'
+            ],
+            'kota' => [
+                'required', 
+                'string', 
+                'min:3', 
+                'max:100'
+            ],
+            'telepon' => [
+                'required', 
+                'regex:/^(\+62|0)[1-9][0-9]{7,10}$/'
+            ],
+
         ]);
 
         Suplier::create($request->all());
@@ -114,10 +175,29 @@ class AdminController extends Controller
     public function suplierUpdate(Request $request, Suplier $suplier)
     {
         $request->validate([
-            'nama' => 'required',
-            'alamat' => 'required',
-            'kota' => 'required',
-            'telepon' => 'required',
+            'nama' => [
+                'required', 
+                'string', 
+                'min:3', 
+                'max:100'
+            ],
+            'alamat' => [
+                'required', 
+                'string', 
+                'min:10', 
+                'max:255'
+            ],
+            'kota' => [
+                'required', 
+                'string', 
+                'min:3', 
+                'max:100'
+            ],
+            'telepon' => [
+                'required', 
+                'regex:/^(\+62|0)[1-9][0-9]{7,10}$/'
+            ],
+
         ]);
 
         $suplier->update($request->all());

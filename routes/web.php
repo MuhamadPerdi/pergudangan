@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\SuplierController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,12 +16,13 @@ use App\Http\Controllers\AdminController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard');
 });
 
 Route::prefix('admin')->group(function () {
     Route::resource('barang', AdminController::class)->names('admin.barang');
-    Route::resource('suplier', AdminController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy'])->names('admin.suplier');
+    Route::resource('suplier', SuplierController::class)->names('admin.suplier');
+    
 });
 
 Route::get('/gudang', [AdminController::class, 'gudang'])->name('gudang.index');

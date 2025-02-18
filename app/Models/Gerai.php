@@ -11,7 +11,7 @@ class Gerai extends Model
 
     protected $table = 'gerai';
 
-    protected $fillable = ['nama', 'alamat', 'kota', 'telepon'];
+    protected $fillable = ['id_gerai','nama', 'alamat', 'kota', 'telepon'];
 
     public function barang()
     {

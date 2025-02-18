@@ -11,7 +11,7 @@ class Suplier extends Model
 
     protected $table = 'suplier';
 
-    protected $fillable = ['nama', 'alamat', 'kota', 'telepon'];
+    protected $fillable = ['id_suplier','nama', 'alamat', 'kota', 'telepon'];
 
     public function barang()
     {

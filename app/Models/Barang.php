@@ -11,15 +11,11 @@ class Barang extends Model
 
     protected $table = 'barang';
 
-    protected $fillable = ['kategori', 'nama_barang', 'harga', 'stok', 'suplier_id', 'gerai_id'];
+    protected $fillable = ['id_barang','kategori', 'nama_barang', 'harga', 'stok', 'suplier_id'];
 
     public function suplier()
     {
         return $this->belongsTo(Suplier::class);
     }
 
-    public function gerai()
-    {
-        return $this->belongsTo(Gerai::class);
-    }
 }

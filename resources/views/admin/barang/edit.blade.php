@@ -8,33 +8,25 @@
         @method('PUT')
         <div class="form-group">
             <label for="kategori">Kategori</label>
-            <input type="text" name="kategori" class="form-control" value="{{ $barang->kategori }}" required>
+            <input type="text" name="kategori" class="form-control" value="{{ old('kategori', $barang->kategori) }}" required>
         </div>
         <div class="form-group">
             <label for="nama_barang">Nama Barang</label>
-            <input type="text" name="nama_barang" class="form-control" value="{{ $barang->nama_barang }}" required>
+            <input type="text" name="nama_barang" class="form-control" value="{{ old('nama_barang', $barang->nama_barang) }}" required>
         </div>
         <div class="form-group">
             <label for="harga">Harga</label>
-            <input type="number" name="harga" class="form-control" value="{{ $barang->harga }}" required>
+            <input type="number" name="harga" class="form-control" value="{{ old('harga', $barang->harga) }}" required>
         </div>
         <div class="form-group">
             <label for="stok">Stok</label>
-            <input type="number" name="stok" class="form-control" value="{{ $barang->stok }}" required>
+            <input type="number" name="stok" class="form-control" value="{{ old('stok', $barang->stok) }}" required>
         </div>
         <div class="form-group">
             <label for="suplier_id">Suplier</label>
             <select name="suplier_id" class="form-control" required>
                 @foreach($suplier as $s)
-                <option value="{{ $s->id }}" {{ $barang->suplier_id == $s->id ? 'selected' : '' }}>{{ $s->nama }}</option>
-                @endforeach
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="gerai_id">Gerai</label>
-            <select name="gerai_id" class="form-control" required>
-                @foreach($gerai as $g)
-                <option value="{{ $g->id }}" {{ $barang->gerai_id == $g->id ? 'selected' : '' }}>{{ $g->nama }}</option>
+                <option value="{{ $s->id }}" {{ old('suplier_id', $barang->suplier_id) == $s->id ? 'selected' : '' }}>{{ $s->nama }}</option>
                 @endforeach
             </select>
         </div>

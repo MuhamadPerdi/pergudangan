@@ -7,6 +7,7 @@
     <table class="table table-bordered">
         <thead>
             <tr>
+                <th>No</th>
                 <th>ID</th>
                 <th>Nama</th>
                 <th>Alamat</th>
@@ -18,7 +19,8 @@
         <tbody>
             @foreach($suplier as $item)
             <tr>
-                <td>{{ $item->id }}</td>
+                <td>{{$loop->iteration}}</td>
+                <td>{{ $item->id_suplier }}</td>
                 <td>{{ $item->nama }}</td>
                 <td>{{ $item->alamat }}</td>
                 <td>{{ $item->kota }}</td>
