@@ -27,7 +27,7 @@
         </thead>
         <tbody id="barang-table-body">
             @foreach($barang as $item)
-            <tr class="barang-item" data-nama_barang="{{ strtolower($item->nama_barang) }}" data-kategori="{{ strtolower($item->kategori) }}">
+            <tr class="barang-item" data-nama_barang="{{ strtolower($item->nama_barang) }}" data-kategori="{{ strtolower($item->kategori) }}" data-suplier="{{ strtolower($item->suplier->nama) }}">
                 <td>{{ $item->id }}</td>
                 <td>{{ $item->kategori }}</td>
                 <td>{{ $item->nama_barang }}</td>
@@ -62,9 +62,11 @@
                     const item = $(this);
                     const nama_barang = item.data('nama_barang'); // Ambil data nama_barang
                     const kategori = item.data('kategori'); // Ambil data kategori
+                    const suplier = item.data('suplier'); 
+                    const stok = item.data('stok'); 
     
                     // Cek apakah nama_barang atau kategori mengandung kata kunci pencarian
-                    const matchesSearch = nama_barang.includes(searchValue) || kategori.includes(searchValue);
+                    const matchesSearch = nama_barang.includes(searchValue) || kategori.includes(searchValue)|| suplier.includes(searchValue);
     
                     // Tampilkan atau sembunyikan baris tabel berdasarkan hasil pencarian
                     if (matchesSearch) {
